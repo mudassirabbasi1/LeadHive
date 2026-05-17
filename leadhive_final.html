@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeadHive — Leads & Outreach on Autopilot</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --white: #fafaf8;
+  --cream: #f5f2eb;
+  --green: #1a7a4a;
+  --green-light: #e8f5ee;
+  --green-bright: #22c55e;
+  --muted: #6b7280;
+  --border: #e5e2da;
+  --card: #ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--black);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 2.5rem;background:var(--cream);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(8px)}
+.logo{font-family:'Instrument Serif',serif;font-size:1.6rem;color:var(--black);letter-spacing:-0.02em}
+.logo span{color:var(--green)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--black)}
+.nav-cta{background:var(--black);color:var(--white);padding:10px 22px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;transition:opacity .2s}
+.nav-cta:hover{opacity:.85}
+
+.hero{padding:6rem 2.5rem 5rem;max-width:900px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green);padding:6px 16px;border-radius:100px;font-size:13px;font-weight:500;margin-bottom:2rem;border:1px solid #b6dfc8}
+.hero-badge::before{content:'●';font-size:8px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+h1{font-family:'Instrument Serif',serif;font-size:clamp(2.8rem,6vw,5rem);line-height:1.08;letter-spacing:-0.03em;margin-bottom:1.5rem;color:var(--black)}
+h1 em{font-style:italic;color:var(--green)}
+.hero-sub{font-size:1.15rem;color:var(--muted);max-width:560px;margin:0 auto 2.5rem;font-weight:400}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--black);color:var(--white);padding:14px 32px;border-radius:100px;font-size:15px;font-weight:500;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{background:var(--green);transform:translateY(-1px)}
+.btn-secondary{background:transparent;color:var(--black);padding:14px 32px;border-radius:100px;font-size:15px;font-weight:500;text-decoration:none;border:1.5px solid var(--border);transition:all .2s}
+.btn-secondary:hover{border-color:var(--black)}
+
+.logos{padding:2rem 2.5rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--white)}
+.logos-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:3rem;justify-content:center;flex-wrap:wrap;opacity:.5;font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+
+.section{padding:5rem 2.5rem;max-width:980px;margin:0 auto}
+.section-label{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:1rem}
+h2{font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,3rem);line-height:1.15;letter-spacing:-0.02em;margin-bottom:1rem}
+.section-sub{color:var(--muted);font-size:1.05rem;max-width:520px;margin-bottom:3rem}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.step{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:transform .2s,box-shadow .2s}
+.step:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+.step-num{font-family:'Instrument Serif',serif;font-size:2.5rem;color:var(--border);line-height:1;margin-bottom:1rem}
+.step h3{font-size:1.05rem;font-weight:600;margin-bottom:.5rem}
+.step p{font-size:14px;color:var(--muted);line-height:1.7}
+
+.features{background:var(--black);padding:5rem 2.5rem;color:var(--white)}
+.features-inner{max-width:980px;margin:0 auto}
+.features-inner .section-label{color:var(--green-bright)}
+.features-inner h2{color:var(--white)}
+.features-inner .section-sub{color:#9ca3af}
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#222;border:1px solid #222;border-radius:16px;overflow:hidden;margin-top:3rem}
+.feat{background:var(--black);padding:2rem;transition:background .2s}
+.feat:hover{background:#111}
+.feat-icon{font-size:1.5rem;margin-bottom:1rem}
+.feat h3{font-size:1rem;font-weight:600;margin-bottom:.4rem;color:var(--white)}
+.feat p{font-size:13.5px;color:#9ca3af;line-height:1.7}
+
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
+.plan{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:2rem;position:relative;transition:all .2s}
+.plan:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.1)}
+.plan.featured{background:var(--black);color:var(--white);border-color:var(--black)}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--green);color:white;font-size:11px;font-weight:600;padding:4px 14px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.plan-name{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
+.plan.featured .plan-name{color:#9ca3af}
+.plan-price{font-family:'Instrument Serif',serif;font-size:3rem;line-height:1;letter-spacing:-0.03em;margin-bottom:.25rem}
+.plan-price span{font-size:1rem;font-family:'DM Sans',sans-serif;font-weight:400;color:var(--muted)}
+.plan.featured .plan-price span{color:#9ca3af}
+.plan-desc{font-size:13px;color:var(--muted);margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.plan.featured .plan-desc{color:#9ca3af;border-color:#333}
+.plan-features{list-style:none;margin-bottom:2rem}
+.plan-features li{font-size:14px;padding:6px 0;display:flex;align-items:flex-start;gap:8px;color:var(--muted)}
+.plan.featured .plan-features li{color:#d1d5db}
+.plan-features li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
+.plan.featured .plan-features li::before{color:var(--green-bright)}
+.plan-btn{display:block;text-align:center;padding:12px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;border:1.5px solid var(--black);color:var(--black);transition:all .2s;cursor:pointer;background:transparent;width:100%;font-family:'DM Sans',sans-serif}
+.plan-btn:hover{background:var(--black);color:var(--white)}
+.plan.featured .plan-btn{background:var(--white);color:var(--black);border-color:var(--white)}
+.plan.featured .plan-btn:hover{background:var(--green-bright);border-color:var(--green-bright)}
+
+.contact-section{background:var(--white);padding:5rem 2.5rem}
+.contact-inner{max-width:640px;margin:0 auto;text-align:center}
+.contact-inner h2{margin-bottom:.75rem}
+.contact-inner .section-sub{margin:0 auto 2.5rem}
+form{text-align:left;display:flex;flex-direction:column;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+input,select,textarea{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--black);outline:none;transition:border .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--black)}
+textarea{min-height:100px;resize:vertical}
+.submit-btn{background:var(--black);color:var(--white);padding:14px;border:none;border-radius:100px;font-size:15px;font-weight:500;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.submit-btn:hover{background:var(--green);transform:translateY(-1px)}
+.form-note{font-size:12px;color:var(--muted);text-align:center}
+.success-msg{display:none;background:var(--green-light);border:1px solid #b6dfc8;color:var(--green);padding:1rem;border-radius:10px;text-align:center;font-size:14px;font-weight:500}
+
+footer{padding:2.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:'Instrument Serif',serif;font-size:1.2rem}
+.footer-logo span{color:var(--green)}
+footer p{font-size:13px;color:var(--muted)}
+
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.fade-in.visible{opacity:1;transform:none}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.25rem}
+  .nav-links{display:none}
+  .hero{padding:4rem 1.25rem 3rem}
+  .section{padding:3.5rem 1.25rem}
+  .steps{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  footer{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Lead<span>Hive</span></div>
+  <ul class="nav-links">
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#order">Get started</a></li>
+  </ul>
+  <a href="#order" class="nav-cta">Start getting leads →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">🟢 Now accepting new clients</div>
+  <h1>Leads & outreach,<br><em>done for you.</em></h1>
+  <p class="hero-sub">We find local businesses in any city, scrape their contact info, and send personalized cold emails on your behalf — so you wake up to replies.</p>
+  <div class="hero-btns">
+    <a href="#order" class="btn-primary">Get my first leads →</a>
+    <a href="#how" class="btn-secondary">See how it works</a>
+  </div>
+  <p style="margin-top:2.5rem;font-size:13px;color:var(--muted)">Trusted by <strong style="color:var(--black)">web designers, agencies & freelancers</strong> across the US</p>
+</section>
+
+<div class="logos">
+  <div class="logos-inner">
+    <span>Restaurants</span><span>Dental Clinics</span><span>Law Firms</span>
+    <span>Gyms</span><span>Furniture Stores</span><span>Real Estate</span><span>Salons</span>
+  </div>
+</div>
+
+<section class="section fade-in" id="how">
+  <div class="section-label">How it works</div>
+  <h2>Three steps to a full inbox</h2>
+  <p class="section-sub">You tell us who you want to reach. We handle everything else.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Tell us your target</h3>
+      <p>Pick a city and business type — restaurants, gyms, dental clinics, law firms, anything with a website.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>We scrape & enrich</h3>
+      <p>We find every matching business on Google Maps, then dig up their email, phone, website, address and rating.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Personalized outreach</h3>
+      <p>We send tailored cold emails using each business's real company name — upgrade pitch or new-site pitch based on what they have.</p>
+    </div>
+  </div>
+</section>
+
+<div class="features fade-in">
+  <div class="features-inner">
+    <div class="section-label">What you get</div>
+    <h2>Everything in one service</h2>
+    <p class="section-sub" style="color:#9ca3af">No tools to set up. No code to run. Just leads and replies.</p>
+    <div class="feat-grid">
+      <div class="feat"><div class="feat-icon">🗺️</div><h3>Google Maps scraping</h3><p>Hundreds of verified local businesses scraped from Google Maps for any city and niche you choose.</p></div>
+      <div class="feat"><div class="feat-icon">📧</div><h3>Email & contact extraction</h3><p>We visit each business's website to find their real email address, phone number, and owner details.</p></div>
+      <div class="feat"><div class="feat-icon">✍️</div><h3>Personalized cold emails</h3><p>Every email uses the business's real name and is customized — upgrade pitch or new site pitch based on what they have.</p></div>
+      <div class="feat"><div class="feat-icon">🔁</div><h3>Automated follow-ups</h3><p>Two follow-up emails go out automatically to anyone who didn't reply — day 3 and day 7.</p></div>
+      <div class="feat"><div class="feat-icon">📊</div><h3>Full leads CSV delivered</h3><p>You get a clean spreadsheet with every lead, their status, and all contact details. Yours to keep.</p></div>
+      <div class="feat"><div class="feat-icon">📬</div><h3>Replies land in your inbox</h3><p>Interested businesses reply directly to your email. You close the deal — we fill your pipeline.</p></div>
+    </div>
+  </div>
+</div>
+
+<section class="section fade-in" id="pricing">
+  <div class="section-label">Pricing</div>
+  <h2>Simple, flat-rate plans</h2>
+  <p class="section-sub">No monthly fees unless you want ongoing leads. Pay once, get results. Payments by Paddle — works worldwide including Pakistan.</p>
+  <div class="pricing-grid">
+    <div class="plan">
+      <div class="plan-name">Starter</div>
+      <div class="plan-price">$49<span>/one-time</span></div>
+      <p class="plan-desc">Perfect for testing a new niche or city.</p>
+      <ul class="plan-features">
+        <li>100 scraped leads</li>
+        <li>1 city + 1 niche</li>
+        <li>Email + phone extraction</li>
+        <li>Personalized cold emails sent</li>
+        <li>CSV delivered in 48hrs</li>
+      </ul>
+      <button class="plan-btn" onclick="selectPlan('Starter ($49)')">Get Starter →</button>
+    </div>
+    <div class="plan featured">
+      <div class="plan-badge">Most popular</div>
+      <div class="plan-name">Growth</div>
+      <div class="plan-price">$149<span>/one-time</span></div>
+      <p class="plan-desc">Best for freelancers ready to land clients fast.</p>
+      <ul class="plan-features">
+        <li>500 scraped leads</li>
+        <li>1 city + up to 5 niches</li>
+        <li>Email + phone extraction</li>
+        <li>Personalized cold emails sent</li>
+        <li>Automated follow-up sequence</li>
+        <li>CSV + pipeline dashboard</li>
+        <li>Delivered in 72hrs</li>
+      </ul>
+      <button class="plan-btn" onclick="selectPlan('Growth ($149)')">Get Growth →</button>
+    </div>
+    <div class="plan">
+      <div class="plan-name">Agency</div>
+      <div class="plan-price">$349<span>/mo</span></div>
+      <p class="plan-desc">Ongoing leads every month for serious closers.</p>
+      <ul class="plan-features">
+        <li>2,000 leads/month</li>
+        <li>Any cities + all niches</li>
+        <li>Full email outreach done for you</li>
+        <li>Follow-up sequences</li>
+        <li>Weekly CSV updates</li>
+        <li>Priority support</li>
+        <li>Custom email templates</li>
+      </ul>
+      <button class="plan-btn" onclick="selectPlan('Agency ($349/mo)')">Get Agency →</button>
+    </div>
+  </div>
+</section>
+
+<div class="contact-section fade-in" id="order">
+  <div class="contact-inner">
+    <div class="section-label" style="text-align:center">Place your order</div>
+    <h2>Let's get you leads</h2>
+    <p class="section-sub">Fill in the form and we'll get started within 24 hours. Payment link sent after submission.</p>
+    <form id="order-form" onsubmit="submitForm(event)">
+      <div class="form-row">
+        <input type="text" id="f-name" placeholder="Your full name" required>
+        <input type="email" id="f-email" placeholder="Your email address" required>
+      </div>
+      <div class="form-row">
+        <select id="plan-select" required>
+          <option value="" disabled selected>Select a plan</option>
+          <option value="Starter ($49)">Starter — $49</option>
+          <option value="Growth ($149)">Growth — $149</option>
+          <option value="Agency ($349/mo)">Agency — $349/mo</option>
+        </select>
+        <input type="text" id="f-city" placeholder="Target city (e.g. New York)" required>
+      </div>
+      <input type="text" id="f-niches" placeholder="Business types (e.g. gyms, dental clinics, restaurants)" required>
+      <textarea id="f-notes" placeholder="Anything else? (optional)"></textarea>
+      <button type="submit" class="submit-btn" id="submit-btn">Send my order →</button>
+      <p class="form-note">We'll reply with a <strong>Paddle</strong> payment link — works worldwide including Pakistan. No charge until you confirm.</p>
+      <div class="success-msg" id="success-msg">✅ Order received! Check your inbox — we'll send a payment link within a few hours.</div>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Lead<span>Hive</span></div>
+  <p>© 2026 LeadHive. All rights reserved.</p>
+  <p>🔒 Payments by Paddle · Works worldwide</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(els => {
+  els.forEach(el => { if(el.isIntersecting) el.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ── Paddle payment links ──────────────────────
+// Replace these with your real links from paddle.com/dashboard
+const PADDLE_LINKS = {
+  'Starter ($49)':    'https://buy.paddle.com/product/YOUR_STARTER_ID',
+  'Growth ($149)':    'https://buy.paddle.com/product/YOUR_GROWTH_ID',
+  'Agency ($349/mo)': 'https://buy.paddle.com/product/YOUR_AGENCY_ID',
+};
+
+function selectPlan(plan) {
+  document.getElementById('plan-select').value = plan;
+  const link = PADDLE_LINKS[plan];
+  // If Paddle links are set up, go straight to checkout
+  if (link && !link.includes('YOUR_')) {
+    window.location.href = link;
+  } else {
+    // Otherwise scroll to contact form to collect details first
+    document.getElementById('order').scrollIntoView({behavior:'smooth'});
+  }
+}
+
+function submitForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  // In production: replace with fetch() to your backend or Formspree endpoint
+  setTimeout(() => {
+    document.getElementById('success-msg').style.display = 'block';
+    btn.textContent = 'Order sent ✓';
+    btn.style.background = '#1a7a4a';
+  }, 800);
+}
+</script>
+</body>
+</html>
